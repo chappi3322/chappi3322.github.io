@@ -23,3 +23,5 @@ function searchWiki(search) {
 	}
 	request.send();	
 }
+
+console.log('i fucked your mom')
