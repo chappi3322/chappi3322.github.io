@@ -12,6 +12,7 @@ window.onload = function() {
 		document.body.removeAttribute('class');
 		input.removeAttribute('class');
 		submit.removeAttribute('class');
+		select.previousElementSibling.removeAttribute('class');
 
 		document.body.classList.add(theme + 'theme-body');
 		select.previousElementSibling.classList.add(theme + 'theme-p');
