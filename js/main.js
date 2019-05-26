@@ -42,7 +42,7 @@ submit.onclick = function() {
 	}
 	else {
 		const search = input.value;
-		const count = Number(select.value) + 1
+		const count = Number(select.value) + 1;
 		searchArticles(search, count);
 	}
 }
@@ -50,7 +50,7 @@ submit.onclick = function() {
 input.onkeyup = function(e) {
 	const search = input.value;
 	if (e.keyCode == 13) {
-		const count = Number(select.value) + 1
+		const count = Number(select.value) + 1;
 		searchArticles(search, count);
 	}
 }
