@@ -3,6 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Тестовое задание</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="css/style.css">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600&display=swap" rel="stylesheet">
 </head>
@@ -12,52 +13,22 @@
 			<div class="dark-theme">Темная тема</div>
 			<div class="light-theme">Светлая тема</div>
 		</div>
+		<div class="results-count">
+			<p>Количество результатов</p>
+			<select id="select">
+				<option value="10">10</option>
+				<option value="15">15</option>
+				<option value="30">30</option>
+				<option value="50">50</option>
+				<option value="75">75</option>
+				<option value="100">100</option>
+			</select>
+		</div>
 		<div class="search">
 			<input type="text" id="input" placeholder="Поиск" class="light-theme-input">
 			<div id="submit" class="light-submit"></div>
 		</div>
-		<div class="articles">
-			<!-- <div class="results">
-				<a href="#">Tesla</a>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio magni, consequatur minima tempore? Omnis laudantium architecto sequi nisi asperiores eaque eveniet perspiciatis laboriosam eius in doloremque iste, itaque culpa minus aspernatur illo dolore labore? Commodi...</p>
-			</div>
-			<div class="results">
-				<a href="#">Tesla</a>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio magni, consequatur minima tempore? Omnis laudantium architecto sequi nisi asperiores eaque eveniet perspiciatis laboriosam eius in doloremque iste, itaque culpa minus aspernatur illo dolore labore? Commodi...</p>
-			</div>
-			<div class="results">
-				<a href="#">Tesla</a>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio magni, consequatur minima tempore? Omnis laudantium architecto sequi nisi asperiores eaque eveniet perspiciatis laboriosam eius in doloremque iste, itaque culpa minus aspernatur illo dolore labore? Commodi...</p>
-			</div>
-			<div class="results">
-				<a href="#">Tesla</a>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio magni, consequatur minima tempore? Omnis laudantium architecto sequi nisi asperiores eaque eveniet perspiciatis laboriosam eius in doloremque iste, itaque culpa minus aspernatur illo dolore labore? Commodi...</p>
-			</div>
-			<div class="results">
-				<a href="#">Tesla</a>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio magni, consequatur minima tempore? Omnis laudantium architecto sequi nisi asperiores eaque eveniet perspiciatis laboriosam eius in doloremque iste, itaque culpa minus aspernatur illo dolore labore? Commodi...</p>
-			</div>
-			<div class="results">
-				<a href="#">Tesla</a>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio magni, consequatur minima tempore? Omnis laudantium architecto sequi nisi asperiores eaque eveniet perspiciatis laboriosam eius in doloremque iste, itaque culpa minus aspernatur illo dolore labore? Commodi...</p>
-			</div>
-			<div class="results">
-				<a href="#">Tesla</a>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio magni, consequatur minima tempore? Omnis laudantium architecto sequi nisi asperiores eaque eveniet perspiciatis laboriosam eius in doloremque iste, itaque culpa minus aspernatur illo dolore labore? Commodi...</p>
-			</div>
-			<div class="results">
-				<a href="#">Tesla</a>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio magni, consequatur minima tempore? Omnis laudantium architecto sequi nisi asperiores eaque eveniet perspiciatis laboriosam eius in doloremque iste, itaque culpa minus aspernatur illo dolore labore? Commodi...</p>
-			</div>
-			<div class="results">
-				<a href="#">Tesla</a>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio magni, consequatur minima tempore? Omnis laudantium architecto sequi nisi asperiores eaque eveniet perspiciatis laboriosam eius in doloremque iste, itaque culpa minus aspernatur illo dolore labore? Commodi...</p>
-			</div>
-			<div class="results">
-				<a href="#">Tesla</a>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio magni, consequatur minima tempore? Omnis laudantium architecto sequi nisi asperiores eaque eveniet perspiciatis laboriosam eius in doloremque iste, itaque culpa minus aspernatur illo dolore labore? Commodi...</p>
-			</div> -->
-		</div>
+		<div class="articles"></div>
 	</div>
 
 	<script src="js/main.js"></script>

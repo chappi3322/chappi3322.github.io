@@ -1,11 +1,29 @@
 const submit = document.getElementById('submit');
 const input = document.getElementById('input');
+const select = document.getElementById('select');
 const dark = document.querySelector('.dark-theme');
 const light = document.querySelector('.light-theme');
+
+// Установить ранее сохраненную тему
+window.onload = function() {
+	const theme = localStorage.getItem('body');
+
+	if (theme != null) {
+		document.body.removeAttribute('class');
+		input.removeAttribute('class');
+		submit.removeAttribute('class');
+
+		document.body.classList.add(theme + 'theme-body');
+		select.previousElementSibling.classList.add(theme + 'theme-p');
+		input.classList.add(theme + 'theme-input');
+		submit.classList.add(theme + 'submit');
+	}
+}
 
 submit.onclick = function() {
 	const bodyClass = document.body.getAttribute('class');
 
+	// При нажатии на кнопку активировать поиск и установить тему  
 	if (!input.classList.contains('input-active')) {
 		switch (bodyClass) {
 			case 'dark-theme-body':
@@ -20,24 +38,31 @@ submit.onclick = function() {
 				return false;
 				break;
 		}
+		input.focus();
 	}
-
-	input.focus();
-
-	const search = input.value;
-	searchArticles(search);
+	else {
+		const search = input.value;
+		const count = Number(select.value) + 1
+		searchArticles(search, count);
+	}
 }
 
 input.onkeyup = function(e) {
 	const search = input.value;
-	if (e.keyCode == 13) searchArticles(search);
+	if (e.keyCode == 13) {
+		const count = Number(select.value) + 1
+		searchArticles(search, count);
+	}
 }
 
 // Темная тема
 dark.onclick = function() {
 	const articles = document.querySelectorAll('.results');
-	removeClasses(articles);
+
+	removeTheme(articles);
 	document.body.classList.add('dark-theme-body');
+	select.previousElementSibling.classList.add('dark-theme-p');
+
 	// Если открыта поисковая строка
 	if (input.classList.contains('input-active')) {
 		input.setAttribute('class', 'dark-theme-input input-active');
@@ -55,12 +80,19 @@ dark.onclick = function() {
 		a.classList.add('dark-theme-a');
 		p.classList.add('dark-theme-p');
 	}
+
+	// Сохранить темную тему
+	localStorage.setItem('body', 'dark-');
 }
 
+// Светлая тема
 light.onclick = function() {
 	const articles = document.querySelectorAll('.results');
-	removeClasses(articles);
+
+	removeTheme(articles);
 	document.body.classList.add('light-theme-body');
+	select.previousElementSibling.classList.add('light-theme-p');
+
 	// Если открыта поисковая строка	
 	if (input.classList.contains('input-active')) {
 		input.setAttribute('class', 'light-theme-input input-active');
@@ -78,10 +110,14 @@ light.onclick = function() {
 		a.classList.add('light-theme-a');
 		p.classList.add('light-theme-p');
 	}
+
+	// Сохранить светлую тему
+	localStorage.setItem('body', 'light-');
 }
 
-function searchArticles(search) {
-	const url = 'https://ru.wikipedia.org/w/api.php?action=opensearch&format=json&origin=*&search=' + search;
+function searchArticles(search, count) {
+	const url = 'https://ru.wikipedia.org/w/api.php?action=opensearch&format=json&origin=*&search='
+				+ search + '&limit=' + count;
 	const request = new XMLHttpRequest();
 	request.open('GET', url);
 	request.responseType = 'json';
@@ -93,14 +129,15 @@ function searchArticles(search) {
 		document.querySelector('.articles').innerHTML = '';
 
 		for (let i = 0; i < names.length; i++) {
-			getText(names[i], links[i]);
+			getText(names[i], links[i], count);
 		}
 	}
 	request.send();
 }
 
-function getText(names, links) {
-	const url = 'https://ru.wikipedia.org/w/api.php?format=json&origin=*&action=query&prop=extracts&exintro=&explaintext=&titles=' + names;
+function getText(names, links, count) {
+	const url = 'https://ru.wikipedia.org/w/api.php?format=json&origin=*&action=query&prop=extracts&exintro=&explaintext=&titles='
+				+ names + '&limit=' + count;
 	const request = new XMLHttpRequest();
 	request.open('GET', url);
 	request.responseType = 'json';
@@ -127,16 +164,16 @@ function push(names, text, links) {
 	a.setAttribute('href', links);
 	a.setAttribute('target', '_blank');
 	a.innerHTML = names;
-	addTheme(a);
+	setTheme(a);
 	div.appendChild(a);
 
 	const p = document.createElement('p');
 	p.innerHTML = text.join(' ') + '...';
-	addTheme(p);
+	setTheme(p);
 	div.appendChild(p);
 }
 
-function addTheme(tag) {
+function setTheme(tag) {
 	const bodyClass = document.body.getAttribute('class');
 	const tagName = tag.tagName.toLowerCase();
 
@@ -153,9 +190,10 @@ function addTheme(tag) {
 	}
 }
 
-function removeClasses(articles) {
+function removeTheme(articles) {
 	document.body.removeAttribute('class');
-
+	select.previousElementSibling.removeAttribute('class');
+	
 	for (let i = 0; i < articles.length; i++) {
 		articles[i].children[0].removeAttribute('class');
 		articles[i].children[1].removeAttribute('class');
