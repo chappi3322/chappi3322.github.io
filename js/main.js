@@ -43,15 +43,15 @@ submit.onclick = function() {
 	}
 	else {
 		const search = input.value;
-		const count = Number(select.value) + 1;
+		const count = select.value;
 		searchArticles(search, count);
 	}
 }
 
 input.onkeyup = function(e) {
-	const search = input.value;
 	if (e.keyCode == 13) {
-		const count = Number(select.value) + 1;
+		const search = input.value;
+		const count = select.value;
 		searchArticles(search, count);
 	}
 }
@@ -116,7 +116,20 @@ light.onclick = function() {
 	localStorage.setItem('body', 'light-');
 }
 
+function removeTheme(articles) {
+	document.body.removeAttribute('class');
+	select.previousElementSibling.removeAttribute('class');
+
+	for (let i = 0; i < articles.length; i++) {
+		articles[i].children[0].removeAttribute('class');
+		articles[i].children[1].removeAttribute('class');
+	}
+}
+
 function searchArticles(search, count) {
+	// Обнуление запросов
+	document.querySelector('.articles').innerHTML = '';
+
 	const url = 'https://ru.wikipedia.org/w/api.php?action=opensearch&format=json&origin=*&search='
 				+ search + '&limit=' + count;
 	const request = new XMLHttpRequest();
@@ -125,9 +138,6 @@ function searchArticles(search, count) {
 	request.onload = function() {
 		const names = request.response[1];
 		const links = request.response[3];
-
-		// Обнуление запросов
-		document.querySelector('.articles').innerHTML = '';
 
 		for (let i = 0; i < names.length; i++) {
 			getText(names[i], links[i], count);
@@ -188,15 +198,5 @@ function setTheme(tag) {
 		default:
 			return false;
 			break;
-	}
-}
-
-function removeTheme(articles) {
-	document.body.removeAttribute('class');
-	select.previousElementSibling.removeAttribute('class');
-	
-	for (let i = 0; i < articles.length; i++) {
-		articles[i].children[0].removeAttribute('class');
-		articles[i].children[1].removeAttribute('class');
 	}
 }
