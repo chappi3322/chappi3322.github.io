@@ -3,6 +3,7 @@ const input = document.getElementById('input');
 const select = document.getElementById('select');
 const dark = document.querySelector('.dark-theme');
 const light = document.querySelector('.light-theme');
+const filter = document.querySelector('.filter');
 
 // Установить ранее сохраненную тему
 window.onload = function() {
@@ -114,6 +115,18 @@ light.onclick = function() {
 
 	// Сохранить светлую тему
 	localStorage.setItem('body', 'light-');
+}
+
+filter.onclick = function() {
+	const articles = document.querySelectorAll('.results');
+	const arr = [];
+
+	for (let i = 0; i < articles.length; i++) {
+		arr.push(articles[i].children[0].innerHTML);
+	}
+
+	console.log(arr);
+	console.log(arr.sort());
 }
 
 function removeTheme(articles) {
