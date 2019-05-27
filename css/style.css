@@ -47,7 +47,7 @@ p {
 }
 
 .articles {
-	margin-top: 40px;
+	margin-top: 80px;
 }
 
 .dark-theme-input {
@@ -212,9 +212,8 @@ p {
 }
 
 .filter {
+	float: right;
     font-size: 30px;
-    right: 0;
-    position: absolute;
     width: 45px;
     background: #fff;
     border-radius: 10px;

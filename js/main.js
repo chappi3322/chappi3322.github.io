@@ -119,14 +119,32 @@ light.onclick = function() {
 
 filter.onclick = function() {
 	const articles = document.querySelectorAll('.results');
-	const arr = [];
+	let pushArticles = document.querySelector('.articles');
+	let arr = [];
 
 	for (let i = 0; i < articles.length; i++) {
-		arr.push(articles[i].children[0].innerHTML);
+		arr.push([articles[i].children[0].innerHTML.toLowerCase(), articles[i]]);
 	}
 
-	console.log(arr);
-	console.log(arr.sort());
+	if (pushArticles.classList.contains('up-down')) {
+		arr = arr.sort();
+		pushArticles.classList.remove('up-down');
+		pushArticles.classList.add('down-up');
+		pushArticles.innerHTML = '';
+		document.querySelector('.filter').innerHTML = '&darr;';
+	}
+
+	else {
+		arr = arr.sort().reverse();
+		pushArticles.classList.remove('down-up');
+		pushArticles.classList.add('up-down');
+		pushArticles.innerHTML = '';
+		document.querySelector('.filter').innerHTML = '&uarr;';	
+	}
+
+	for (let j = 0; j < arr.length; j++) {
+		pushArticles.appendChild(arr[j][1]);
+	}
 }
 
 function removeTheme(articles) {
