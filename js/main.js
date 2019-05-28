@@ -43,6 +43,7 @@ submit.onclick = function() {
 		input.focus();
 	}
 	else {
+		filter.classList.remove('disabled');
 		const search = input.value;
 		const count = select.value;
 		searchArticles(search, count);
@@ -51,6 +52,7 @@ submit.onclick = function() {
 
 input.onkeyup = function(e) {
 	if (e.keyCode == 13) {
+		filter.classList.remove('disabled');
 		const search = input.value;
 		const count = select.value;
 		searchArticles(search, count);

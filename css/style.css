@@ -222,6 +222,10 @@ p {
     padding-bottom: 5px;
 }
 
+.disabled {
+	display: none;
+}
+
 @-moz-document url-prefix() {
 	.light-submit {
 		transform: translate(-100px);
